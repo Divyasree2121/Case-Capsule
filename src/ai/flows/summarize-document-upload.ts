@@ -11,7 +11,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { DocxLoader } from "@langchain/community/document_loaders/fs/docx";
-import { TextLoader } from "@langchain/community/document_loaders/fs/text";
+import { TextLoader } from "langchain/document_loaders/fs/text";
 
 const SummarizeDocumentInputSchema = z.object({
   documentDataUri: z
