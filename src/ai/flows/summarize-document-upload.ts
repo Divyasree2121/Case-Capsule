@@ -33,42 +33,24 @@ async function getDocumentContent(documentDataUri: string): Promise<string> {
   const mimeType = parts[0].split(':')[1].split(';')[0];
   const base64Data = parts[1];
   const buffer = Buffer.from(base64Data, 'base64');
+  const blob = new Blob([buffer]);
 
-  // Use a unique filename to avoid conflicts
-  const filename = `temp_doc_${Date.now()}`;
-  const filepath = `public/${filename}`;
-  // Ensure 'fs' is available in this environment
-  const fs = require('fs');
-
-  fs.writeFileSync(filepath, buffer);
-  
-  try {
-    let loader;
-    switch (mimeType) {
-      case 'application/pdf':
-        loader = new PDFLoader(filepath);
-        break;
-      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        loader = new DocxLoader(filepath);
-        break;
-      case 'text/plain':
-        loader = new TextLoader(filepath);
-        break;
-      default:
-        throw new Error(`Unsupported MIME type: ${mimeType}`);
-    }
-    const docs = await loader.load();
-
-    // Delete temporary file
-    fs.unlinkSync(filepath);
-
-    // Concatenate all text content from document pages
-    return docs.map((doc) => doc.pageContent).join("\n");
-  } catch (e) {
-    // Delete temporary file if load fails
-    fs.unlinkSync(filepath);
-    throw e;
+  let loader;
+  switch (mimeType) {
+    case 'application/pdf':
+      loader = new PDFLoader(blob);
+      break;
+    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      loader = new DocxLoader(blob);
+      break;
+    case 'text/plain':
+      loader = new TextLoader(blob);
+      break;
+    default:
+      throw new Error(`Unsupported MIME type: ${mimeType}`);
   }
+  const docs = await loader.load();
+  return docs.map((doc) => doc.pageContent).join('\n');
 }
 
 export async function summarizeDocument(input: SummarizeDocumentInput): Promise<SummarizeDocumentOutput> {
@@ -77,7 +59,10 @@ export async function summarizeDocument(input: SummarizeDocumentInput): Promise<
 
 const prompt = ai.definePrompt({
   name: 'summarizeDocumentPrompt',
-  input: {schema: SummarizeDocumentInputSchema},
+  input: {schema: z.object({
+      documentDataUri: SummarizeDocumentInputSchema.shape.documentDataUri,
+      documentContent: z.string(),
+  })},
   output: {schema: SummarizeDocumentOutputSchema},
   prompt: `You are a world-class summarization expert.
 
