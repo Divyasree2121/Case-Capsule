@@ -31,12 +31,12 @@ const prompt = ai.definePrompt({
   output: {schema: z.object({ summary: SummarizeTextInputOutputSchema.shape.summary })},
   prompt: `Summarize the following text.
 
-  Your output must be in JSON format and must adhere to this schema:
-  {
-    "summary": "The AI-powered summary of the text."
-  }
-  
-  Text: {{{text}}}`,
+Your output must be in JSON format and must adhere to this schema:
+{
+  "summary": "The AI-powered summary of the text."
+}
+
+Text: {{{text}}}`,
 });
 
 const summarizeTextInputFlow = ai.defineFlow(
