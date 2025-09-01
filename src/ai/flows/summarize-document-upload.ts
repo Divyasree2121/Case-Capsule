@@ -40,6 +40,7 @@ async function getDocumentContent(documentDataUri: string): Promise<string> {
     case 'application/pdf':
       loader = new PDFLoader(blob);
       break;
+    case 'application/msword':
     case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
       loader = new DocxLoader(blob);
       break;
