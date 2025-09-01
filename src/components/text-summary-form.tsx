@@ -36,7 +36,6 @@ export function TextSummaryForm() {
     event.preventDefault();
     setIsLoading(true);
     setError(null);
-    setResult(null);
 
     const formData = new FormData(event.currentTarget);
     const text = formData.get('text') as string;
@@ -98,7 +97,7 @@ export function TextSummaryForm() {
             </CardContent>
           </Card>
         )}
-        {result && <SummaryDisplay summary={result.summary} wordCount={result.wordCount} />}
+        {result && !isLoading && <SummaryDisplay summary={result.summary} wordCount={result.wordCount} />}
       </div>
     </div>
   );

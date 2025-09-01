@@ -68,7 +68,6 @@ export function DocSummaryForm() {
 
     setIsLoading(true);
     setError(null);
-    setResult(null);
 
     const response = await handleDocumentSummary(dataUri);
 
@@ -151,7 +150,7 @@ export function DocSummaryForm() {
             </CardContent>
           </Card>
         )}
-        {result && <SummaryDisplay summary={result.summary} wordCount={result.wordCount} />}
+        {result && !isLoading && <SummaryDisplay summary={result.summary} wordCount={result.wordCount} />}
       </div>
     </div>
   );
