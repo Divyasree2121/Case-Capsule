@@ -29,12 +29,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeTextInputPrompt',
   input: {schema: z.object({ text: SummarizeTextInputInputSchema.shape.text })},
   output: {schema: z.object({ summary: SummarizeTextInputOutputSchema.shape.summary })},
-  prompt: `Your output must be in JSON format and must adhere to this schema:
-{
-  "summary": "The AI-powered summary of the text."
-}
-
-Summarize the following text.
+  prompt: `Summarize the following text.
 
 Text: {{{text}}}`,
 });
