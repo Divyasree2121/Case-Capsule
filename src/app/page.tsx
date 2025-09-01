@@ -20,9 +20,9 @@ export default function SplashPage() {
       <div className="animate-fade-in-up flex flex-col items-center gap-4">
         <Logo className="h-24 w-24" />
         <h1 className="font-headline text-5xl font-bold text-foreground">
-          SummarizeIt
+          CaseCapsule
         </h1>
-        <p className="text-muted-foreground">AI-powered summarization at your fingertips.</p>
+        <p className="text-muted-foreground">From case files to quick insights..</p>
       </div>
       <style jsx>{`
         @keyframes fade-in-up {

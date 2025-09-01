@@ -27,7 +27,7 @@ export function AuthForm() {
   return (
     <div className="flex flex-col items-center gap-4">
       <Logo className="h-16 w-16" />
-      <h1 className="font-headline text-4xl text-foreground">Welcome to SummarizeIt</h1>
+      <h1 className="font-headline text-4xl text-foreground">Welcome to CaseCapsule</h1>
       <Tabs defaultValue="signin" className="w-full max-w-md">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="signin">Sign In</TabsTrigger>

@@ -19,7 +19,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2">
             <Logo className="size-8" />
-            <h1 className="font-headline text-xl">SummarizeIt</h1>
+            <h1 className="font-headline text-xl">CaseCapsule</h1>
           </div>
           <SidebarSeparator />
         </SidebarHeader>
@@ -33,7 +33,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SidebarInset>
         <header className="flex h-14 items-center gap-4 border-b bg-background/50 px-6 backdrop-blur-sm md:hidden">
           <SidebarTrigger />
-          <h1 className="font-headline text-xl">SummarizeIt</h1>
+          <h1 className="font-headline text-xl">CaseCapsule</h1>
         </header>
         <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
           {children}
