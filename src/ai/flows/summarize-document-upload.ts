@@ -64,10 +64,10 @@ const prompt = ai.definePrompt({
       documentDataUri: SummarizeDocumentInputSchema.shape.documentDataUri,
       documentContent: z.string(),
   })},
-  output: {schema: SummarizeDocumentOutputSchema},
+  output: {schema: z.object({ summary: SummarizeDocumentOutputSchema.shape.summary })},
   prompt: `You are a world-class summarization expert.
 
-  Summarize the following document. Return also the word count of the original document.
+  Summarize the following document.
   Document: {{{documentContent}}}
   `,
 });
@@ -89,7 +89,7 @@ const summarizeDocumentFlow = ai.defineFlow(
     const wordCount = documentContent.trim().split(/\s+/).length;
 
     return {
-      ...output!,
+      summary: output!.summary,
       wordCount,
     };
   }
