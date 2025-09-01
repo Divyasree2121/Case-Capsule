@@ -67,12 +67,12 @@ const prompt = ai.definePrompt({
   output: {schema: z.object({ summary: SummarizeDocumentOutputSchema.shape.summary })},
   prompt: `You are a world-class summarization expert.
 
-Summarize the following document.
-
 Your output must be in JSON format and must adhere to this schema:
 {
   "summary": "The AI-generated summary of the document."
 }
+
+Summarize the following document.
 
 Document: {{{documentContent}}}
 `,
