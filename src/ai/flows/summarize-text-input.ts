@@ -27,8 +27,8 @@ export async function summarizeTextInput(input: SummarizeTextInputInput): Promis
 
 const prompt = ai.definePrompt({
   name: 'summarizeTextInputPrompt',
-  input: {schema: z.object({ text: SummarizeTextInputInputSchema.shape.text })},
-  output: {schema: z.object({ summary: SummarizeTextInputOutputSchema.shape.summary })},
+  input: {schema: SummarizeTextInputInputSchema},
+  output: {schema: SummarizeTextInputOutputSchema.pick({ summary: true })},
   prompt: `Summarize the following text.
 
 Text: {{{text}}}`,

@@ -64,7 +64,7 @@ const prompt = ai.definePrompt({
       documentDataUri: SummarizeDocumentInputSchema.shape.documentDataUri,
       documentContent: z.string(),
   })},
-  output: {schema: z.object({ summary: SummarizeDocumentOutputSchema.shape.summary })},
+  output: {schema: SummarizeDocumentOutputSchema.pick({ summary: true })},
   prompt: `You are a world-class summarization expert. Summarize the following document.
 
 Document: {{{documentContent}}}
