@@ -9,9 +9,9 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { DocxLoader } from "langchain/document_loaders/fs/docx";
-import { TextLoader } from "langchain/document_loaders/fs/text";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import { DocxLoader } from "@langchain/community/document_loaders/fs/docx";
+import { TextLoader } from "@langchain/community/document_loaders/fs/text";
 
 const SummarizeDocumentInputSchema = z.object({
   documentDataUri: z
@@ -62,7 +62,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeDocumentPrompt',
   input: {schema: z.object({ documentContent: z.string() })},
   output: {schema: z.object({ summary: z.string() })},
-  model: 'googleai/gemini-pro',
+  model: 'googleai/gemini-1.5-flash-latest',
   prompt: `Your task is to provide a concise summary of the document provided.
 Your output must be a JSON object with a single key "summary" containing the summary.
 

@@ -29,7 +29,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeTextInputPrompt',
   input: {schema: SummarizeTextInputInputSchema},
   output: {schema: z.object({ summary: z.string() })},
-  model: 'googleai/gemini-pro',
+  model: 'googleai/gemini-1.5-flash-latest',
   prompt: `Your task is to provide a concise summary of the text provided.
 
 Your output must be a JSON object with a single key "summary" containing the summary.
