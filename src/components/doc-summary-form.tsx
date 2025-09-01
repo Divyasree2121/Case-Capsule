@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { handleDocumentSummary } from '@/lib/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,7 @@ import { SummaryDisplay } from '@/components/summary-display';
 import { Loader2, UploadCloud, File, X } from 'lucide-react';
 import type { SummarizeDocumentOutput } from '@/ai/flows/summarize-document-upload';
 import { Skeleton } from './ui/skeleton';
+import { useSummaries } from '@/hooks/use-summaries';
 
 export function DocSummaryForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +20,20 @@ export function DocSummaryForm() {
   const [dataUri, setDataUri] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const { addSummary } = useSummaries();
+
+  useEffect(() => {
+    if (result && selectedFile) {
+        addSummary({
+            id: crypto.randomUUID(),
+            name: selectedFile.name,
+            type: 'Document',
+            date: new Date().toISOString(),
+            summary: result.summary,
+            wordCount: result.wordCount,
+        });
+    }
+  }, [result, selectedFile, addSummary]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

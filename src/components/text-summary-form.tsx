@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { handleTextSummary } from '@/lib/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -10,12 +10,27 @@ import { SummaryDisplay } from '@/components/summary-display';
 import { Loader2 } from 'lucide-react';
 import type { SummarizeTextInputOutput } from '@/ai/flows/summarize-text-input';
 import { Skeleton } from './ui/skeleton';
+import { useSummaries } from '@/hooks/use-summaries';
 
 export function TextSummaryForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SummarizeTextInputOutput | null>(null);
   const { toast } = useToast();
+  const { addSummary } = useSummaries();
+
+  useEffect(() => {
+    if (result) {
+        addSummary({
+            id: crypto.randomUUID(),
+            name: 'Text Input',
+            type: 'Text',
+            date: new Date().toISOString(),
+            summary: result.summary,
+            wordCount: result.wordCount,
+        });
+    }
+  }, [result, addSummary]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
