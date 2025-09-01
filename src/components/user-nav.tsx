@@ -33,7 +33,7 @@ export function UserNav() {
           className="relative h-auto w-full justify-start gap-2 p-2 text-left"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="https://i.pravatar.cc/150?u=a04258114e29026702d" alt="@divyasree" />
+            <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="@divyasree" />
             <AvatarFallback>DS</AvatarFallback>
           </Avatar>
           <div className="flex flex-col truncate">
