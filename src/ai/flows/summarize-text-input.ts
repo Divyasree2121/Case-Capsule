@@ -29,7 +29,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeTextInputPrompt',
   input: {schema: SummarizeTextInputInputSchema},
   output: {schema: SummarizeTextInputOutputSchema.pick({ summary: true })},
-  prompt: `Summarize the following text.
+  prompt: `Summarize the following text. Return your response as a JSON object with a "summary" field.
 
 Text: {{{text}}}`,
 });

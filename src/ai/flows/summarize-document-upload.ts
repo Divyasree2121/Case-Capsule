@@ -67,6 +67,8 @@ const prompt = ai.definePrompt({
   output: {schema: SummarizeDocumentOutputSchema.pick({ summary: true })},
   prompt: `You are a world-class summarization expert. Summarize the following document.
 
+Return your response as a JSON object with a "summary" field.
+
 Document: {{{documentContent}}}
 `,
 });
@@ -84,7 +86,6 @@ const summarizeDocumentFlow = ai.defineFlow(
       documentContent,
     });
 
-    // Count words in the original document content
     const wordCount = documentContent.trim().split(/\s+/).length;
 
     return {
