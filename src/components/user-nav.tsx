@@ -33,13 +33,13 @@ export function UserNav() {
           className="relative h-auto w-full justify-start gap-2 p-2 text-left"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="https://i.pravatar.cc/150?u=a04258114e29026702d" alt="@janedoe" />
-            <AvatarFallback>JD</AvatarFallback>
+            <AvatarImage src="https://i.pravatar.cc/150?u=a04258114e29026702d" alt="@divyasree" />
+            <AvatarFallback>DS</AvatarFallback>
           </Avatar>
           <div className="flex flex-col truncate">
-            <span className="text-sm font-medium">Jane Doe</span>
+            <span className="text-sm font-medium">divya sree</span>
             <span className="truncate text-xs text-muted-foreground">
-              jane.doe@example.com
+              divyasreenika@gmail.com
             </span>
           </div>
         </Button>
@@ -47,9 +47,9 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Jane Doe</p>
+            <p className="text-sm font-medium leading-none">divya sree</p>
             <p className="text-xs leading-none text-muted-foreground">
-              jane.doe@example.com
+              divyasreenika@gmail.com
             </p>
           </div>
         </DropdownMenuLabel>
