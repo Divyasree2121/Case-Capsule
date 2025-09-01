@@ -68,6 +68,12 @@ const prompt = ai.definePrompt({
   prompt: `You are a world-class summarization expert.
 
   Summarize the following document.
+
+  Your output must be in JSON format and must adhere to this schema:
+  {
+    "summary": "The AI-generated summary of the document."
+  }
+  
   Document: {{{documentContent}}}
   `,
 });
