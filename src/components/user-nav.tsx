@@ -10,6 +10,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
@@ -29,13 +33,13 @@ export function UserNav() {
           className="relative h-auto w-full justify-start gap-2 p-2 text-left"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="@user" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="@alexdoe" />
+            <AvatarFallback>AD</AvatarFallback>
           </Avatar>
           <div className="flex flex-col truncate">
-            <span className="text-sm font-medium">User</span>
+            <span className="text-sm font-medium">Alex Doe</span>
             <span className="truncate text-xs text-muted-foreground">
-              user@example.com
+              alex.doe@example.com
             </span>
           </div>
         </Button>
@@ -43,16 +47,26 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">User</p>
+            <p className="text-sm font-medium leading-none">Alex Doe</p>
             <p className="text-xs leading-none text-muted-foreground">
-              user@example.com
+              alex.doe@example.com
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Settings</DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem>Appearance</DropdownMenuItem>
+                <DropdownMenuItem>Notifications</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
