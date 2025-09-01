@@ -60,12 +60,10 @@ export async function summarizeDocument(input: SummarizeDocumentInput): Promise<
 
 const prompt = ai.definePrompt({
   name: 'summarizeDocumentPrompt',
-  input: {schema: z.object({
-      documentDataUri: SummarizeDocumentInputSchema.shape.documentDataUri,
-      documentContent: z.string(),
-  })},
+  input: {schema: z.object({ documentContent: z.string() })},
   output: {schema: z.object({ summary: z.string() })},
-  prompt: `Summarize the following document.
+  prompt: `Your task is to provide a concise summary of the document provided.
+Your output must be a JSON object with a single key "summary" containing the summary.
 
 Document: {{{documentContent}}}
 `,
@@ -79,10 +77,7 @@ const summarizeDocumentFlow = ai.defineFlow(
   },
   async input => {
     const documentContent = await getDocumentContent(input.documentDataUri);
-    const {output} = await prompt({
-      ...input,
-      documentContent,
-    });
+    const {output} = await prompt({ documentContent });
 
     const wordCount = documentContent.trim().split(/\s+/).length;
 
