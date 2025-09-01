@@ -21,13 +21,15 @@ export function useSummaries() {
 
   const addSummary = useCallback((summary: Summary) => {
     try {
-      const newSummaries = [summary, ...summaries];
-      setSummaries(newSummaries);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(newSummaries));
+        setSummaries(prevSummaries => {
+            const newSummaries = [summary, ...prevSummaries];
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(newSummaries));
+            return newSummaries;
+        });
     } catch (error) {
         console.error("Failed to save summary to local storage", error);
     }
-  }, [summaries]);
+  }, []);
 
   const clearSummaries = useCallback(() => {
     try {
