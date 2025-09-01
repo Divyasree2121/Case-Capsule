@@ -44,11 +44,11 @@ export function AuthForm() {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email-signin">Email</Label>
-                <Input id="email-signin" type="email" placeholder="m@example.com" />
+                <Input id="email-signin" type="email" placeholder="m@example.com" autoComplete="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password-signin">Password</Label>
-                <Input id="password-signin" type="password" />
+                <Input id="password-signin" type="password" autoComplete="new-password" />
               </div>
             </CardContent>
             <CardFooter>
@@ -69,15 +69,15 @@ export function AuthForm() {
             <CardContent className="space-y-4">
                <div className="space-y-2">
                 <Label htmlFor="email-signup">Email</Label>
-                <Input id="email-signup" type="email" placeholder="m@example.com" />
+                <Input id="email-signup" type="email" placeholder="m@example.com" autoComplete="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password-signup">Password</Label>
-                <Input id="password-signup" type="password" />
+                <Input id="password-signup" type="password" autoComplete="new-password" />
               </div>
                <div className="space-y-2">
                 <Label htmlFor="password-confirm">Confirm Password</Label>
-                <Input id="password-confirm" type="password" />
+                <Input id="password-confirm" type="password" autoComplete="new-password" />
               </div>
             </CardContent>
             <CardFooter>
