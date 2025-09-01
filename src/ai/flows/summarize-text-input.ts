@@ -27,9 +27,9 @@ export async function summarizeTextInput(input: SummarizeTextInputInput): Promis
 
 const prompt = ai.definePrompt({
   name: 'summarizeTextInputPrompt',
-  input: {schema: SummarizeTextInputInputSchema},
-  output: {schema: SummarizeTextInputOutputSchema},
-  prompt: `Summarize the following text and provide the word count of the original text.\n\nText: {{{text}}}`,
+  input: {schema: z.object({ text: SummarizeTextInputInputSchema.shape.text })},
+  output: {schema: z.object({ summary: SummarizeTextInputOutputSchema.shape.summary })},
+  prompt: `Summarize the following text.\n\nText: {{{text}}}`,
 });
 
 const summarizeTextInputFlow = ai.defineFlow(
@@ -40,7 +40,7 @@ const summarizeTextInputFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    const wordCount = input.text.split(/\s+/).length;
+    const wordCount = input.text.trim().split(/\s+/).length;
     return {
       summary: output!.summary,
       wordCount: wordCount,
